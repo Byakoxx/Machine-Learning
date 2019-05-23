@@ -162,7 +162,15 @@ def m3():
     data2 = scaler.transform(data) #aqui
     predictions = model.predict(data2)
 
-    return jsonify({"predictions": predictions.tolist()})
+    if (predictions.tolist()==[0]):
+     predictions=['Iris-setosa']
+
+    elif (predictions.tolist()==[1]):
+        predictions=['Iris-versicolor']
+    elif (predictions.tolist()==[2]):
+        predictions=['Iris-virginica']
+
+    return jsonify({"predictions": predictions})
     
 
 @app.route("/")
